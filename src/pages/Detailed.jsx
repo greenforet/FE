@@ -170,4 +170,4 @@ const BookDetailPage = () => {
   );
 };
 
-export default BookDetailPage;
+export default DetailedPage;
