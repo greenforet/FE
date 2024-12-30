@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import Sidebar from "../components/mypage/Sidebar";
 import MyInfo from "../components/mypage/MyInfo";
 import DeleteAccount from "../components/mypage/DeleteAccount";
 import PaymentsList from "../components/mypage/PaymentsList";
-import Cart from "../components/mypage/Cart";
+import Cart from "./Cart";
 import SignupConfirmModal from "../components/modal/SignupConfirmModal";
 import { useDispatch, useSelector } from "react-redux";
 import { openModal, closeModal } from "../features/modalSlice";
 import { useNavigate } from "react-router-dom"; // useNavigate 임포트
+import CartPage from "../components/mypage/CartPage";
 
 const MyPage = () => {
   const [selectedMenu, setSelectedMenu] = useState("myinfo");
@@ -52,7 +54,7 @@ const MyPage = () => {
       case "deleteaccount":
         return <DeleteAccount token={token} />;
       case "cart":
-        return <Cart />;
+        return <CartPage />;
       case "paymentslist":
         return <PaymentsList />;
       default:
@@ -64,7 +66,7 @@ const MyPage = () => {
     switch (selectedMenu) {
       case "paymentslist":
         return "주문결제조회";
-      case "cart":
+      case "cartpage":
         return "내 장바구니";
       case "modifyInfo":
         return "내 정보";
@@ -101,20 +103,17 @@ const Container = styled.div`
   display: flex;
   background-color: #f8f9fa;
   min-height: 100vh;
-  margin-top: 302px;
-  min-width: 1200px;
-  max-width: 1500px;
-  position: relative;
+  margin: 302px auto;
+  min-width: 1200px; // 추가: 전체 최소 너비 설정
 `;
 
 const Content = styled.div`
   flex: 1;
   padding: 30px;
-  padding-left: 280px;
   background-color: #fff;
   color: #333;
-  min-width: 800px;
-  overflow-x: auto;
+  min-width: 800px; // 추가: 컨텐츠 영역 최소 너비 설정
+  overflow-x: auto; // 추가: 필요한 경우에만 가로 스크롤
 `;
 
 const PageTitle = styled.h1`
@@ -125,5 +124,5 @@ const PageTitle = styled.h1`
   font-size: 2rem;
   text-align: left;
   border-bottom: 1px solid gray;
-  margin: 0 0 20px 0;
+  margin-top: 0 auto;
 `;

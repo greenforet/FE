@@ -49,13 +49,7 @@ const BookList = ({ setModal, userData, token }) => {
       <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
       <CardList>
         {books?.map((book) => (
-          <BookItem 
-            key={book.bookId} 
-            book={book} 
-            setModal={setModal} 
-            userData={userData} 
-            token={token} 
-          />
+          <BookItem key={book.id} book={book} setModal={setModal} userData={userData} token={token} />
         ))}
       </CardList>
     </section>
